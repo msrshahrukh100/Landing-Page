@@ -1,0 +1,63 @@
+{% load static %}
+<nav class="nav-extended white">
+	<div class="nav-wrapper">
+		<a href="/stories" class="brand-logo left hide-on-med-and-down">
+			<img class="responsive-img" src="{% static 'images/logo/codeilmlogo.png' %}" style="padding-top: 13px;padding-left: 10px;" height="200" width="200">
+		</a>
+		<a href="/stories" class="brand-logo center hide-on-large-only">
+			<img class="responsive-img" src="{% static 'images/logo/codeilmlogo.png' %}" style="padding-top: 13px;" height="200" width="200">
+		</a>
+		<a href="#" data-target="slide-out" class="sidenav-trigger black-text"><i class="material-icons">menu</i></a>
+		<ul class="right hide-on-med-and-down">
+			<li>
+				<a href="/u/{{ request.user.username }}-{{ request.user.id }}">
+					<div class="chip transparent" style="cursor: pointer;">
+						{% if request.user.is_authenticated %}
+						{{ request.user }}
+						{% endif %}
+					</div>
+				</a>
+			</li>
+			{% if not request.user.is_authenticated %}
+			<a class="waves-effect waves-light btn light-blue darken-2 no-capital-button" href="/login">Login</a>
+			{% endif %}
+	</ul>
+</div>
+</nav>
+
+
+<ul id="slide-out" class="sidenav">
+	<li>
+		<div class="user-view">
+			<div class="background">
+				<img class="lazyload" src="{% static 'images/user_background_image/user_background.jpg' %}">
+			</div>
+			{% if request.user.is_authenticated %}
+			<a href="/u/{{ request.user.username }}-{{ request.user.id }}" >
+			</a>
+			<a href="/u/{{ request.user.id }}/{{ request.user.username }}">
+				<span class="white-text name">{{ request.user }}
+				</span>
+			</a>
+			{% endif %}
+		</div>
+	</li>
+	<li>
+		<a href="/stories">
+			<i class="material-icons teal-text text-darken-3 left green-text">arrow_forward_ios</i>Read Stories
+		</a>
+	</li>
+	<li>
+		<a href="/add-codeilm-to-your-site">
+			<i class="material-icons teal-text text-darken-3 left green-text">add</i>Add Codeilm to your site
+		</a>
+	</li>
+	{% if request.user.is_authenticated %}
+	<form method="POST" id="logout-form-small" action="{% url 'account_logout' %}">
+		<li>
+		{% csrf_token %}
+			<a onclick="document.getElementById('logout-form-small').submit();"><i class="material-icons teal-text text-darken-3 left">power_settings_new</i>Logout</a>
+		</li>
+	</form>
+	{% endif %}
+</ul>
