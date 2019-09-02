@@ -25,7 +25,7 @@ SECRET_KEY = 'dpkdi@=3_inocftnh_!1w9ib-na=xv9w2!!p652gqgz#7to!y#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
