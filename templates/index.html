@@ -47,6 +47,9 @@
         </div>
         <div class="col m6 s12" style="margin-top: 1rem;">
         	<button id="submitEmail" type="submit" class="waves-effect waves-light btn" style="text-transform: none; background: linear-gradient(45deg, #FE6B8B 30%, #f20e02 90%);">Setup Codeilm</button>
+					<span id="preloader" style="display: none;  margin-left: 20px; margin-top: 1rem;">
+						{% include "preloader.html" %}
+					</span>
         </div>
       </div>
         <p style="color: #4CAF50;" id="email-submit-status">
@@ -111,12 +114,18 @@
             dataType: "json",
             success: function(data) {
             	$('#email-submit-status').html(data["msg"])
+							$('#preloader').hide();
+							$('#submitEmail').show();
             },
             fail: function() {
                 console.log("error")
+								$('#preloader').hide();
+								$('#submitEmail').show();
             },
             beforeSend: function(xhr) {
             	console.log("posting data", data)
+							$('#preloader').show();
+							$('#submitEmail').hide();
                 var csrftoken = getCookie('csrftoken');
                 xhr.setRequestHeader('X-CSRFToken', csrftoken);
             },
