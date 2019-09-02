@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 
-
+admin.site.site_header = 'Awesome Landing Page'
+admin.site.site_title = 'Landing Page Admin'
+admin.site.index_title = 'Landing Page Admin'
 
 urlpatterns = [
 	path('', TemplateView.as_view(template_name="index.html")),
