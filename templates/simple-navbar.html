@@ -53,7 +53,7 @@
 		</a>
 	</li>
 	{% if request.user.is_authenticated %}
-	<form method="POST" id="logout-form-small" action="{% url 'account_logout' %}">
+	<form method="POST" id="logout-form-small" action="">
 		<li>
 		{% csrf_token %}
 			<a onclick="document.getElementById('logout-form-small').submit();"><i class="material-icons teal-text text-darken-3 left">power_settings_new</i>Logout</a>
